@@ -8,7 +8,6 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
-namespace ryabkov_batcher {
 TEST(ryabkov_v_vec_test_perf, test_pipeline) {
   std::vector<int> vect = GetRandomVector(1000000);
   std::vector<int> result(vect.size(), 0);
@@ -66,4 +65,3 @@ TEST(ryabkov_v_vec_test_perf, test_task_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
-}  // namespace ryabkov_batcher

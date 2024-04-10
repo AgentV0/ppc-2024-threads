@@ -11,7 +11,6 @@
 
 #include "core/task/include/task.hpp"
 
-namespace ryabkov_batcher {
 class SeqBatcher : public ppc::core::Task {
  public:
   explicit SeqBatcher(std::shared_ptr<ppc::core::TaskData> taskData) : Task(std::move(taskData)) {}
@@ -36,4 +35,3 @@ inline std::vector<int> GetRandomVector(int size) {
 
   return vect;
 }
-}  // namespace ryabkov_batcher

@@ -3,7 +3,6 @@
 
 using len_t = std::size_t;
 
-namespace ryabkov_batcher {
 void radix_sort(std::vector<int>& arr, int exp) {
   const std::size_t n = arr.size();
   std::vector<int> output(n);
@@ -114,4 +113,3 @@ bool SeqBatcher::post_processing() {
   std::copy(result.begin(), result.end(), reinterpret_cast<int*>(taskData->outputs[0]));
   return true;
 }
-}  // namespace ryabkov_batcher

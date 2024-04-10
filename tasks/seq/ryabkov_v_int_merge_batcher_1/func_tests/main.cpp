@@ -5,13 +5,12 @@
 
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
-namespace ryabkov_batcher {
 void run_test(const std::vector<int> &vect) {
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(reinterpret_cast<char *>(vect.data())));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(vect.data())));
   taskDataSeq->inputs_count.emplace_back(vect.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   taskDataSeq->outputs_count.emplace_back(result.size());
@@ -48,4 +47,3 @@ TEST(ryabkov_v_vec_test, Test5) {
   std::vector<int> vect = GetRandomVector(100);  // generates a vector of size 100
   run_test(vect);
 }
-}  // namespace ryabkov_batcher
