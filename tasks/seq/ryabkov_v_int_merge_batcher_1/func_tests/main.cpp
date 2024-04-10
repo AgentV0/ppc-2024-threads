@@ -5,6 +5,7 @@
 
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
+namespace ryabkov_batcher {
 void run_test(const std::vector<int> &vect) {
   std::vector<int> result(vect.size(), 0);
 
@@ -47,3 +48,4 @@ TEST(ryabkov_v_vec_test, Test5) {
   std::vector<int> vect = GetRandomVector(100);  // generates a vector of size 100
   run_test(vect);
 }
+}  // namespace ryabkov_batcher
