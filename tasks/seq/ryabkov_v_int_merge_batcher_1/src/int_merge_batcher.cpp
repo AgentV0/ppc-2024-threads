@@ -32,7 +32,7 @@ std::vector<int> batch_merge(const std::vector<int>& a1, const std::vector<int>&
   std::size_t i = 0, j = 0;
 
   for (std::size_t k = 0; k < merged.size(); ++k) {
-    if ((k & 1) == 0 && i < a1.size() || (k & 1) == 1 && j >= a2.size()) {
+    if (((k & 1) == 0 && i < a1.size()) || ((k & 1) == 1 && j >= a2.size())) {
       merged[k] = a1[i++];
     } else {
       merged[k] = a2[j++];
@@ -48,7 +48,7 @@ std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
   const std::size_t n = a1.size();
   std::vector<int> result(n * 2);
 
-  for (int bit = 0; bit < sizeof(int) * 8; bit++) {
+  for (size_t bit = 0; bit < sizeof(int) * 8; bit++) {
     for (std::size_t i = 0; i < n; i += 2) {
       if ((a1[i] >> bit) & 1) {
         std::swap(a1[i], a1[i + 1]);
