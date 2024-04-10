@@ -93,7 +93,7 @@ bool SeqBatcher::pre_processing() {
 bool SeqBatcher::validation() {
   internal_order_test();
 
-  return std::is_sorted(a1.begin(), a1.end()) && std::is_sorted(a2.begin(), a2.end());
+  return std::is_sorted(result.begin(), result.end());
 }
 
 bool SeqBatcher::run() {
