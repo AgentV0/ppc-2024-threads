@@ -1,10 +1,10 @@
 // Copyright 2024 Ryabkov Vladislav
 
-#include "seq/ryabkov_v_int_merge_batcher1/include/int_merge_batcher.hpp"
+#include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
 using namespace std::chrono_literals
 
-using len_t = std::size_t;
+    using len_t = std::size_t;
 
 namespace ryabkov_batcher {
 void MergeAndCorrect(std::vector<int>& result, const std::vector<int>& a1, const std::vector<int>& a2) {

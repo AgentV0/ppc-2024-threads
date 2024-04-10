@@ -4,7 +4,7 @@
 
 #include <vector>
 
-#include "seq/ryabkov_v_int_merge_batcher/include/int_merge_batcher.hpp"
+#include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
 namespace ryabkov_batcher {
 void run_test(const std::vector<int> &vect) {
