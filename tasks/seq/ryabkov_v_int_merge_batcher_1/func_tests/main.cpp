@@ -23,27 +23,27 @@ void run_test(const std::vector<int> &vect) {
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
 
-TEST(ryabkov_v_vec_test, Test1) {
+TEST(ryabkov_v_bat_sort_seq, Test1) {
   std::vector<int> vect = GetRandomVector(20);  // generates a vector of size 20
   run_test(vect);
 }
 
-TEST(ryabkov_v_vec_test, Test2) {
+TEST(ryabkov_v_bat_sort_seq, Test2) {
   std::vector<int> vect = GetRandomVector(40);  // generates a vector of size 40
   run_test(vect);
 }
 
-TEST(ryabkov_v_vec_test, Test3) {
+TEST(ryabkov_v_bat_sort_seq, Test3) {
   std::vector<int> vect = GetRandomVector(60);  // generates a vector of size 60
   run_test(vect);
 }
 
-TEST(ryabkov_v_vec_test, Test4) {
+TEST(ryabkov_v_bat_sort_seq, Test4) {
   std::vector<int> vect = GetRandomVector(80);  // generates a vector of size 80
   run_test(vect);
 }
 
-TEST(ryabkov_v_vec_test, Test5) {
+TEST(ryabkov_v_bat_sort_seq, Test5) {
   std::vector<int> vect = GetRandomVector(100);  // generates a vector of size 100
   run_test(vect);
 }

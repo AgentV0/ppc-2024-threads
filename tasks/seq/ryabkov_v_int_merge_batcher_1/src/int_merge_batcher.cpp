@@ -1,8 +1,6 @@
 // Copyright 2024 Ryabkov Vladislav
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
-using len_t = std::size_t;
-
 void radix_sort(std::vector<int>& arr, int exp) {
   const std::size_t n = arr.size();
   std::vector<int> output(n);
@@ -81,7 +79,7 @@ bool SeqBatcher::pre_processing() {
   a1.resize(inv.size() / 2);
   a2.resize(inv.size() / 2);
 
-  for (len_t i = 0; i < inv.size() / 2; ++i) {
+  for (std::size_t i = 0; i < inv.size() / 2; ++i) {
     a1[i] = inv[i];
     a2[i] = inv[inv.size() / 2 + i];
   }
