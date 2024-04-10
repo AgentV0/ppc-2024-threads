@@ -1,27 +1,24 @@
 // Copyright 2024 Ryabkov Vladislav
-
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
-
-using namespace std::chrono_literals;
 
 using len_t = std::size_t;
 
 namespace ryabkov_batcher {
 void radix_sort(std::vector<int>& arr, int exp) {
-  const int n = arr.size();
+  const std::size_t n = arr.size();
   std::vector<int> output(n);
   std::vector<int> count(10, 0);
 
-  for (int i = 0; i < n; i++) count[(arr[i] / exp) % 10]++;
+  for (std::size_t i = 0; i < n; i++) count[(arr[i] / exp) % 10]++;
 
   for (int i = 1; i < 10; i++) count[i] += count[i - 1];
 
-  for (int i = n - 1; i >= 0; i--) {
+  for (int i = static_cast<int>(n) - 1; i >= 0; i--) {
     output[count[(arr[i] / exp) % 10] - 1] = arr[i];
     count[(arr[i] / exp) % 10]--;
   }
 
-  for (int i = 0; i < n; i++) arr[i] = output[i];
+  for (std::size_t i = 0; i < n; i++) arr[i] = output[i];
 }
 
 void radix_sort(std::vector<int>& arr) {
@@ -32,9 +29,9 @@ void radix_sort(std::vector<int>& arr) {
 
 std::vector<int> batch_merge(const std::vector<int>& a1, const std::vector<int>& a2) {
   std::vector<int> merged(a1.size() + a2.size());
-  int i = 0, j = 0;
+  std::size_t i = 0, j = 0;
 
-  for (int k = 0; k < merged.size(); ++k) {
+  for (std::size_t k = 0; k < merged.size(); ++k) {
     if ((k & 1) == 0 && i < a1.size() || (k & 1) == 1 && j >= a2.size()) {
       merged[k] = a1[i++];
     } else {
@@ -48,11 +45,11 @@ std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
   radix_sort(a1);
   radix_sort(a2);
 
-  const int n = a1.size();
+  const std::size_t n = a1.size();
   std::vector<int> result(n * 2);
 
   for (int bit = 0; bit < sizeof(int) * 8; bit++) {
-    for (int i = 0; i < n; i += 2) {
+    for (std::size_t i = 0; i < n; i += 2) {
       if ((a1[i] >> bit) & 1) {
         std::swap(a1[i], a1[i + 1]);
       }
@@ -61,7 +58,7 @@ std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
       }
     }
     auto merged = batch_merge(a1, a2);
-    for (int i = 0; i < n; i++) {
+    for (std::size_t i = 0; i < n; i++) {
       if ((merged[i * 2] >> bit) & 1) {
         std::swap(merged[i * 2], merged[i * 2 + 1]);
       }
@@ -74,7 +71,6 @@ std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
   std::copy(a2.begin(), a2.end(), result.begin() + n);
   return result;
 }
-
 
 bool SeqBatcher::pre_processing() {
   internal_order_test();
