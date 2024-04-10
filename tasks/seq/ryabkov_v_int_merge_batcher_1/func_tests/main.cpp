@@ -11,7 +11,7 @@ void run_test(const std::vector<int> &vect) {
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(vect.data())));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(reinterpret_cast<char *>(vect.data())));
   taskDataSeq->inputs_count.emplace_back(vect.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   taskDataSeq->outputs_count.emplace_back(result.size());
