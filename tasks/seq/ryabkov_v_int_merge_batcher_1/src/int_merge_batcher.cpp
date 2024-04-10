@@ -74,8 +74,6 @@ std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
 bool SeqBatcher::pre_processing() {
   internal_order_test();
 
-  if (!taskData) return false;
-
   inv.resize(taskData->inputs_count[0]);
   int* tmp_ptr_A = reinterpret_cast<int*>(taskData->inputs[0]);
   std::copy(tmp_ptr_A, tmp_ptr_A + taskData->inputs_count[0], inv.begin());
