@@ -62,42 +62,42 @@ std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
 }
 }  // namespace ryabkov_batcher
 
-bool SeqBatcher::pre_processing() {
+bool ryabkov_batcher::SeqBatcher::pre_processing() {
   internal_order_test();
 
   if (!taskData) return false;
 
-  ryabkov_batcher::inv.resize(taskData->inputs_count[0]);
+  inv.resize(taskData->inputs_count[0]);
   int* tmp_ptr_A = reinterpret_cast<int*>(taskData->inputs[0]);
-  std::copy(tmp_ptr_A, tmp_ptr_A + taskData->inputs_count[0], ryabkov_batcher::inv.begin());
+  std::copy(tmp_ptr_A, tmp_ptr_A + taskData->inputs_count[0], inv.begin());
 
-  ryabkov_batcher::a1.resize(ryabkov_batcher::inv.size() / 2);
-  ryabkov_batcher::a2.resize(ryabkov_batcher::inv.size() / 2);
+  a1.resize(inv.size() / 2);
+  a2.resize(inv.size() / 2);
 
   for (std::size_t i = 0; i < inv.size() / 2; ++i) {
-    ryabkov_batcher::a1[i] = ryabkov_batcher::inv[i];
-    ryabkov_batcher::a2[i] = ryabkov_batcher::inv[ryabkov_batcher::inv.size() / 2 + i];
+    a1[i] = inv[i];
+    a2[i] = inv[inv.size() / 2 + i];
   }
 
   return true;
 }
 
-bool SeqBatcher::validation() {
+bool ryabkov_batcher::SeqBatcher::validation() {
   internal_order_test();
 
   return taskData->inputs_count[0] == taskData->outputs_count[0];
 }
 
-bool SeqBatcher::run() {
+bool ryabkov_batcher::SeqBatcher::run() {
   internal_order_test();
 
-  result = ryabkov_batcher::BatchSort(ryabkov_batcher::a1, ryabkov_batcher::a2);
+  result = ryabkov_batcher::BatchSort(a1, a2);
   return true;
 }
 
-bool SeqBatcher::post_processing() {
+bool ryabkov_batcher::SeqBatcher::post_processing() {
   internal_order_test();
 
-  std::copy(ryabkov_batcher::result.begin(), ryabkov_batcher::result.end(), reinterpret_cast<int*>(taskData->outputs[0]));
+  std::copy(result.begin(), result.end(), reinterpret_cast<int*>(taskData->outputs[0]));
   return true;
 }
