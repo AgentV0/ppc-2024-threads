@@ -1,4 +1,5 @@
 // Copyright 2024 Ryabkov Vladislav
+
 #include <gtest/gtest.h>
 
 #include <chrono>
