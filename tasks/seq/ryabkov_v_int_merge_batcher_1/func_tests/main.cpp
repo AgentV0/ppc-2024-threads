@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <iostream>
+
 #include <vector>
 
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
@@ -19,17 +19,18 @@ void run_test(const std::vector<int> &vect) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  std::cout << result.begin(), result.end() << std::endl;
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
 
 TEST(ryabkov_v_bat_sort_seq, Test1) {
-  std::vector<int> vect = GetRandomVector(20);  // generates a vector of size 20
+  std::vector<int> vect = {3, 5, 6, 4, 1, 2, 0, 9, 8, 7};
+  //std::vector<int> vect = GetRandomVector(20);  // generates a vector of size 20
   run_test(vect);
 }
 
 TEST(ryabkov_v_bat_sort_seq, Test2) {
-  std::vector<int> vect = GetRandomVector(40);  // generates a vector of size 40
+  std::vector<int> vect = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  // std::vector<int> vect = GetRandomVector(40);  // generates a vector of size 40
   run_test(vect);
 }
 
