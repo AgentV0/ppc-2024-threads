@@ -19,7 +19,7 @@ TEST(ryabkov_v_bat_sort_seq, test_pipeline_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   taskDataSeq->outputs_count.emplace_back(result.size());
 
-  auto testTaskSequential = std::make_shared<SeqBatcher>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<ryabkov_batcher::SeqBatcher>(taskDataSeq);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
@@ -48,7 +48,7 @@ TEST(ryabkov_v_bat_sort_seq, test_task_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   taskDataSeq->outputs_count.emplace_back(result.size());
 
-  auto testTaskSequential = std::make_shared<SeqBatcher>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<ryabkov_batcher::SeqBatcher>(taskDataSeq);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;

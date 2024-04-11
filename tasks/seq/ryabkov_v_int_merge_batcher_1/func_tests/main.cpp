@@ -14,7 +14,7 @@ void run_test(const std::vector<int> &vect) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   taskDataSeq->outputs_count.emplace_back(result.size());
 
-  SeqBatcher testTaskSequential(taskDataSeq);
+  ryabkov_batcher::SeqBatcher testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
