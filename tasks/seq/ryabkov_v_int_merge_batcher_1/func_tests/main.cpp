@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <vector>
-
+#include <iostream>
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
 void run_test(const std::vector<int> &vect) {
@@ -19,6 +19,7 @@ void run_test(const std::vector<int> &vect) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
+  std::cout << result.begin(), result.end() << endl;
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
 

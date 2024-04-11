@@ -92,7 +92,8 @@ bool SeqBatcher::pre_processing() {
 bool SeqBatcher::validation() {
   internal_order_test();
 
-  return true;
+  return taskData->inputs_count[0] == taskData->outputs_count[0];
+  ;
 }
 
 bool SeqBatcher::run() {
