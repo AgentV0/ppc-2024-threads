@@ -9,8 +9,8 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
-TEST(ryabkov_v_vec_test_perf, test_pipeline) {
-  std::vector<int> vect = GetRandomVector(1000000);
+TEST(ryabkov_v_bat_sort_seq, test_pipeline_run) {
+  std::vector<int> vect = ryabkov_batcher::GetRandomVector(1000000);
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -38,8 +38,8 @@ TEST(ryabkov_v_vec_test_perf, test_pipeline) {
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
 
-TEST(ryabkov_v_vec_test_perf, test_task_run) {
-  std::vector<int> vect = GetRandomVector(1000000);
+TEST(ryabkov_v_bat_sort_seq, test_task_run) {
+  std::vector<int> vect = ryabkov_batcher::GetRandomVector(1000000);
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();

@@ -23,26 +23,26 @@ void run_test(const std::vector<int> &vect) {
 }
 
 TEST(ryabkov_v_bat_sort_seq, Test1) {
-  std::vector<int> vect = GetRandomVector(20);  // generates a vector of size 20
+  std::vector<int> vect = ryabkov_batcher::GetRandomVector(10);  // generates a vector of size 10
   run_test(vect);
 }
 
 TEST(ryabkov_v_bat_sort_seq, Test2) {
-  std::vector<int> vect = GetRandomVector(40);  // generates a vector of size 40
+  std::vector<int> vect = ryabkov_batcher::GetRandomVector(30);  // generates a vector of size 30
   run_test(vect);
 }
 
 TEST(ryabkov_v_bat_sort_seq, Test3) {
-  std::vector<int> vect = GetRandomVector(60);  // generates a vector of size 60
+  std::vector<int> vect = ryabkov_batcher::GetRandomVector(40);  // generates a vector of size 40
   run_test(vect);
 }
 
 TEST(ryabkov_v_bat_sort_seq, Test4) {
-  std::vector<int> vect = GetRandomVector(80);  // generates a vector of size 80
+  std::vector<int> vect = ryabkov_batcher::GetRandomVector(50);  // generates a vector of size 50
   run_test(vect);
 }
 
 TEST(ryabkov_v_bat_sort_seq, Test5) {
-  std::vector<int> vect = GetRandomVector(100);  // generates a vector of size 100
+  std::vector<int> vect = ryabkov_batcher::GetRandomVector(100);  // generates a vector of size 100
   run_test(vect);
 }

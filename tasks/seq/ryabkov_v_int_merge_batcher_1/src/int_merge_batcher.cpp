@@ -1,6 +1,7 @@
 // Copyright 2024 Ryabkov Vladislav
 #include "seq/ryabkov_v_int_merge_batcher_1/include/int_merge_batcher.hpp"
 
+namespace ryabkov_batcher {
 void radix_sort(std::vector<int>& arr, int exp) {
   const std::size_t n = arr.size();
   std::vector<int> output(n);
@@ -59,22 +60,23 @@ std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
 
   return merged;
 }
+}  // namespace ryabkov_batcher
 
 bool SeqBatcher::pre_processing() {
   internal_order_test();
 
   if (!taskData) return false;
 
-  inv.resize(taskData->inputs_count[0]);
+  ryabkov_batcher::inv.resize(taskData->inputs_count[0]);
   int* tmp_ptr_A = reinterpret_cast<int*>(taskData->inputs[0]);
-  std::copy(tmp_ptr_A, tmp_ptr_A + taskData->inputs_count[0], inv.begin());
+  std::copy(tmp_ptr_A, tmp_ptr_A + taskData->inputs_count[0], ryabkov_batcher::inv.begin());
 
-  a1.resize(inv.size() / 2);
-  a2.resize(inv.size() / 2);
+  ryabkov_batcher::a1.resize(ryabkov_batcher::inv.size() / 2);
+  ryabkov_batcher::a2.resize(ryabkov_batcher::inv.size() / 2);
 
   for (std::size_t i = 0; i < inv.size() / 2; ++i) {
-    a1[i] = inv[i];
-    a2[i] = inv[inv.size() / 2 + i];
+    ryabkov_batcher::a1[i] = ryabkov_batcher::inv[i];
+    ryabkov_batcher::a2[i] = ryabkov_batcher::inv[ryabkov_batcher::inv.size() / 2 + i];
   }
 
   return true;
@@ -89,13 +91,13 @@ bool SeqBatcher::validation() {
 bool SeqBatcher::run() {
   internal_order_test();
 
-  result = BatchSort(a1, a2);
+  result = ryabkov_batcher::BatchSort(ryabkov_batcher::a1, ryabkov_batcher::a2);
   return true;
 }
 
 bool SeqBatcher::post_processing() {
   internal_order_test();
 
-  std::copy(result.begin(), result.end(), reinterpret_cast<int*>(taskData->outputs[0]));
+  std::copy(ryabkov_batcher::result.begin(), ryabkov_batcher::result.end(), reinterpret_cast<int*>(taskData->outputs[0]));
   return true;
 }
