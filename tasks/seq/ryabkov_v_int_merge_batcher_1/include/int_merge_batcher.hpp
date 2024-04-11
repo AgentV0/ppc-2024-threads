@@ -27,7 +27,7 @@ inline std::vector<int> GetRandomVector(int size) {
   std::vector<int> vect(size);
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::uniform_int_distribution<int> dis(0, 1000000);
+  std::uniform_int_distribution<int> dis(0, 1000);
 
   for (int i = 0; i < size; ++i) {
     vect[i] = dis(gen);

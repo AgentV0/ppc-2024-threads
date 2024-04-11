@@ -21,7 +21,9 @@ void radix_sort(std::vector<int>& arr, int exp) {
 void radix_sort(std::vector<int>& arr) {
   const int max_element = *std::max_element(arr.begin(), arr.end());
 
-  for (int exp = 1; max_element / exp > 0; exp *= 10) radix_sort(arr, exp);
+  for (int exp = 1; max_element / exp > 0; exp *= 10) {
+    radix_sort(arr, exp);
+  }
 }
 
 std::vector<int> batch_merge(const std::vector<int>& a1, const std::vector<int>& a2) {
@@ -29,7 +31,7 @@ std::vector<int> batch_merge(const std::vector<int>& a1, const std::vector<int>&
   std::size_t i = 0, j = 0;
 
   for (std::size_t k = 0; k < merged.size(); ++k) {
-    if (((k & 1) == 0 && i < a1.size()) || ((k & 1) == 1 && j >= a2.size())) {
+    if (i < a1.size() && (j >= a2.size() || a1[i] < a2[j])) {
       merged[k] = a1[i++];
     } else {
       merged[k] = a2[j++];
@@ -39,34 +41,23 @@ std::vector<int> batch_merge(const std::vector<int>& a1, const std::vector<int>&
 }
 
 std::vector<int> BatchSort(std::vector<int>& a1, std::vector<int>& a2) {
-  radix_sort(a1);
-  radix_sort(a2);
-
-  const std::size_t n = a1.size();
-  std::vector<int> result(n * 2);
+  std::vector<int> merged = batch_merge(a1, a2);
 
   for (size_t bit = 0; bit < sizeof(int) * 8; bit++) {
-    for (std::size_t i = 0; i < n; i += 2) {
-      if ((a1[i] >> bit) & 1) {
-        std::swap(a1[i], a1[i + 1]);
-      }
-      if ((a2[i] >> bit) & 1) {
-        std::swap(a2[i], a2[i + 1]);
+    for (size_t i = 0; i < merged.size() / 2; i++) {
+      if ((i % 2 == 0 && (merged[2 * i] >> bit) & 1) || (i % 2 != 0 && (merged[2 * i + 1] >> bit) & 1)) {
+        std::swap(merged[2 * i], merged[2 * i + 1]);
       }
     }
-    auto merged = batch_merge(a1, a2);
-    for (std::size_t i = 0; i < n; i++) {
-      if ((merged[i * 2] >> bit) & 1) {
-        std::swap(merged[i * 2], merged[i * 2 + 1]);
-      }
-    }
-    a1.assign(merged.begin(), merged.begin() + n);
-    a2.assign(merged.begin() + n, merged.end());
   }
 
-  std::copy(a1.begin(), a1.end(), result.begin());
-  std::copy(a2.begin(), a2.end(), result.begin() + n);
-  return result;
+  radix_sort(merged);
+
+  std::size_t n = merged.size() / 2;
+  a1.assign(merged.begin(), merged.begin() + n);
+  a2.assign(merged.begin() + n, merged.end());
+
+  return merged;
 }
 
 bool SeqBatcher::pre_processing() {
@@ -93,7 +84,6 @@ bool SeqBatcher::validation() {
   internal_order_test();
 
   return taskData->inputs_count[0] == taskData->outputs_count[0];
-  ;
 }
 
 bool SeqBatcher::run() {
