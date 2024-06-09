@@ -1,3 +1,5 @@
+// Copyright 2024 Ryabkov Vladislav
+
 #include "omp/ryabkov_v_int_merge_batcher/include/int_merge_batcher.hpp"
 
 namespace ryabkov_batcher {
