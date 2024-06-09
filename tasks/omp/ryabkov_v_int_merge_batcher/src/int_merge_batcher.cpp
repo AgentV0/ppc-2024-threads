@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 // Copyright 2024 Ryabkov Vladislav
 
-=======
->>>>>>> origin/omp_ryabkov_v_int_merge_batcher
 #include "omp/ryabkov_v_int_merge_batcher/include/int_merge_batcher.hpp"
 
 namespace ryabkov_batcher {
@@ -37,11 +34,7 @@ void radix_sort(std::vector<int>& arr, int exp) {
   }
 
 #pragma omp parallel for
-<<<<<<< HEAD
   for (int i = 0; i < n; i++) {
-=======
-  for (int i = 0; i < n; i++) { 
->>>>>>> origin/omp_ryabkov_v_int_merge_batcher
     arr[i] = output[i];
   }
 }
@@ -105,11 +98,7 @@ bool ryabkov_batcher::SeqBatcher::pre_processing() {
   a2.resize(inv.size() / 2);
 
 #pragma omp parallel for
-<<<<<<< HEAD
   for (int i = 0; i < static_cast<int>(inv.size() / 2); ++i) {
-=======
-  for (int i = 0; i < static_cast<int>(inv.size() / 2); ++i) { 
->>>>>>> origin/omp_ryabkov_v_int_merge_batcher
     a1[i] = inv[i];
     a2[i] = inv[inv.size() / 2 + i];
   }

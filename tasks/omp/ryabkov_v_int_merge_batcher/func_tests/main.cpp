@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 // Copyright 2024 Ryabkov Vladislav
 
-=======
->>>>>>> origin/omp_ryabkov_v_int_merge_batcher
 #include <gtest/gtest.h>
 
 #include <vector>
