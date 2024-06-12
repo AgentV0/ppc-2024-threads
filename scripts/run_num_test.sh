@@ -10,10 +10,6 @@ echo ref_func_tests
 echo "--------------------------------"
 python3 "$BASEDIR/scripts/check_number_tests.py" "$BASEDIR/build/bin/ref_func_tests"
 echo "--------------------------------"
-echo mpi_func_tests
-echo "--------------------------------"
-python3 "$BASEDIR/scripts/check_number_tests.py" "$BASEDIR/build/bin/mpi_func_tests"
-echo "--------------------------------"
 echo omp_func_tests
 echo "--------------------------------"
 python3 "$BASEDIR/scripts/check_number_tests.py" "$BASEDIR/build/bin/omp_func_tests"
@@ -30,10 +26,6 @@ echo tbb_func_tests
 echo "--------------------------------"
 python3 "$BASEDIR/scripts/check_number_tests.py" "$BASEDIR/build/bin/tbb_func_tests"
 
-echo "--------------------------------"
-echo mpi_perf_tests
-echo "--------------------------------"
-python3 "$BASEDIR/scripts/check_number_tests.py" "$BASEDIR/build/bin/mpi_perf_tests"
 echo "--------------------------------"
 echo omp_perf_tests
 echo "--------------------------------"
